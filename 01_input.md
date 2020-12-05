@@ -83,6 +83,37 @@ m.d.comb += y.eq(x + 1)
 
 It's always the last statement that takes precedence, so `y` will be set to `x+1`, not `0`.
 
+### The if-statement
+
+In Python, you can write something like this:
+
+```python
+y = 0
+if x == 7:
+    y = z
+```
+
+The equivalent in nMigen is:
+
+```python
+m.d.comb += y.eq(0)
+with m.If(x == 7):
+    m.d.comb += y.eq(z)
+```
+
+In this way, you can conditionally assign `y`. You can even use `else`:
+
+```python
+with m.If(x == 7):
+    m.d.comb += y.eq(z)
+with m.Else():
+    m.d.comb += y.eq(0)
+```
+
+This does the same thing.
+
+![An if-else-statement](diagrams/if.png)
+
 ## Step 4: Make sure it compiles!
 
 You can quickly check that there aren't any syntax errors by just generating the code:
@@ -122,6 +153,15 @@ m.d.comb += Assert(x == 7 and y)  # This is a syntax error.
 ![The logic diagram for the above code](diagrams/bad_and.png)
 
 When the formal verification engine runs, it tries to falsify any of your assertions. If it can't, you win! But if it can, it will show you what inputs it used to make your assertion fail. Then you can debug.
+
+By the way, if-statements also work for asserts:
+
+```python
+with m.If(x == 7)
+    m.d.comb += Assert(y)
+```
+
+This means, if `x` is `7`, then `y` must be 1. Otherwise we make no assertion about `y`.
 
 ### Covers
 
