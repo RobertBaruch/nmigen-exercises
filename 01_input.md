@@ -161,7 +161,7 @@ with m.If(x == 7)
     m.d.comb += Assert(y)
 ```
 
-This means, if `x` is `7`, then `y` must be 1. Otherwise we make no assertion about `y`.
+This means, if `x` is `7`, then `y` must be `1`. Otherwise we make no assertion about `y`.
 
 ### Covers
 
