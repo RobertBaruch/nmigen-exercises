@@ -273,4 +273,4 @@ SBY 15:17:41 [answers/to_pennies_bmc] DONE (PASS, rc=0)
 
 ## Stumped?
 
-The answer to this exercies is in `answers/to_pennies.py`.
+The answer to this exercise is in `answers/to_pennies.py`.
