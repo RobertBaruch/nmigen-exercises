@@ -75,7 +75,7 @@ class NextDay(Elaboratable):
     def formal(cls) -> Tuple[Module, List[Signal]]:
         """Formal verification for the NextDay module."""
         m = Module()
-        m.submodules.nd = nd = NextDay()
+        m.submodules.nd = nd = cls()
 
         # We don't have to create a signal here. Using is_zero is like just copying the logic.
         is_zero = ((nd.next_year == 0) &

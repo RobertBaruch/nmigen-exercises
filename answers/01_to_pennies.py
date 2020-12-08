@@ -40,7 +40,7 @@ class ToPennies(Elaboratable):
     def formal(cls) -> Tuple[Module, List[Signal]]:
         """Formal verification for the ToPennies module."""
         m = Module()
-        m.submodules.to_pennies = to_pennies = ToPennies()
+        m.submodules.to_pennies = to_pennies = cls()
 
         m.d.comb += Cover((to_pennies.pennies == 37) &
                           (to_pennies.nickels == 3) &

@@ -27,7 +27,7 @@ Use formal verification to:
 
 ## Step 1: Create a module
 
-A nMigen *module* is a Python class that has inputs and outputs, and code that generates the logic for the desired functionality. Note that I didn't say code that *implements* the function. A key concept is that nMigen is a Python library for writing logic. When the module is *elaborated*, your code runs and nMigen outputs the corresponding logic.
+An nMigen *module* is a Python class that has inputs and outputs, and code that generates the logic for the desired functionality. Note that I didn't say code that *implements* the function. A key concept is that nMigen is a Python library for writing logic. When the module is *elaborated*, your code runs and nMigen outputs the corresponding logic.
 
 You can think of the logic that nMigen writes as an integrated circuit, and the code that you write as the instructions for how to create a copy of that integrated circuit.
 
@@ -41,7 +41,7 @@ You can use the [`skeleton.py`](skeleton.py) file to start. Some key features he
 * Your public (or visible) inputs and outputs are attributes of the class.
 * The class has an `elaborate` function that gets called by nMigen to generate the logic.
 * The class has a class-level `formal` method for verifying your logic.
-* You can run your class to generate the output. This requires the `main` function in `util.py`.
+* You can run your class to generate the output. This requires the `main` function in [`util.py`](util.py).
 
 ## Step 2: Create input and output signals
 
