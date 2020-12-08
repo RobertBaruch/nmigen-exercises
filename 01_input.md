@@ -41,7 +41,7 @@ You can use the `skeleton.py` file to start. Some key features here are:
 * Your public (or visible) inputs and outputs are attributes of the class.
 * The class has an `elaborate` function that gets called by nMigen to generate the logic.
 * The class has a class-level `formal` method for verifying your logic.
-* You can run your class to generate the output.
+* You can run your class to generate the output. This requires the `main` function in `util.py`.
 
 ## Step 2: Create input and output signals
 
@@ -184,50 +184,50 @@ python3 your_class.py gen
 
 ## Step 6: Run the formal verification engine for covers
 
-Running your code with `gen` will have it output a file `toplevel.il`. This can be run through the SymbiYosys formal verification tool. It requires a `.sby` configuration file, which I've included in `answers/to_pennies.sby`.
+Running your code with `gen` will have it output a file `toplevel.il`. This can be run through the SymbiYosys formal verification tool. It requires a `.sby` configuration file, which I've included in `answers/01_to_pennies.sby`.
 
 ```
 python3 your_class.py gen
-sby -f answers/to_pennies.sby cover
+sby -f answers/01_to_pennies.sby cover
 ```
 
 First, look for the cover conditions to be satisfied. These are the `Reached cover statement at...` lines below. And, if all your cover statements were satisfied, you'll get a `DONE (PASS, rc=0)` line.
 
 ```
-SBY 15:17:27 [answers/to_pennies_cover] Removing directory 'answers/to_pennies_cover'.
-SBY 15:17:27 [answers/to_pennies_cover] Copy 'toplevel.il' to 'answers/to_pennies_cover/src/toplevel.il'.
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: smtbmc z3
-SBY 15:17:27 [answers/to_pennies_cover] base: starting process "cd answers/to_pennies_cover/src; yosys -ql ../model/design.log ../model/design.ys"
-SBY 15:17:27 [answers/to_pennies_cover] base: finished (returncode=0)
-SBY 15:17:27 [answers/to_pennies_cover] smt2: starting process "cd answers/to_pennies_cover/model; yosys -ql design_smt2.log design_smt2.ys"
-SBY 15:17:27 [answers/to_pennies_cover] smt2: finished (returncode=0)
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: starting process "cd answers/to_pennies_cover; yosys-smtbmc -s z3 --presat -c --noprogress -t 1  --append 0 --dump-vcd engine_0/trace%.vcd --dump-vlogtb engine_0/trace%_tb.v --dump-smtc engine_0/trace%.smtc model/design_smt2.smt2"
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Solver: z3
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Reached cover statement at answers/to_pennies.py:45 in step 0.
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace0.vcd
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace0_tb.v
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace0.smtc
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Reached cover statement at answers/to_pennies.py:53 in step 0.
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace1.vcd
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace1_tb.v
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace1.smtc
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Reached cover statement at answers/to_pennies.py:51 in step 0.
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace2.vcd
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace2_tb.v
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace2.smtc
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: ##   0:00:00  Status: passed
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: finished (returncode=0)
-SBY 15:17:27 [answers/to_pennies_cover] engine_0: Status returned by engine: pass
-SBY 15:17:27 [answers/to_pennies_cover] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY 15:17:27 [answers/to_pennies_cover] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY 15:17:27 [answers/to_pennies_cover] summary: engine_0 (smtbmc z3) returned pass
-SBY 15:17:27 [answers/to_pennies_cover] summary: trace: answers/to_pennies_cover/engine_0/trace0.vcd
-SBY 15:17:27 [answers/to_pennies_cover] summary: trace: answers/to_pennies_cover/engine_0/trace1.vcd
-SBY 15:17:27 [answers/to_pennies_cover] summary: trace: answers/to_pennies_cover/engine_0/trace2.vcd
-SBY 15:17:27 [answers/to_pennies_cover] DONE (PASS, rc=0)
+SBY 15:17:27 [answers/01_to_pennies_cover] Removing directory 'answers/01_to_pennies_cover'.
+SBY 15:17:27 [answers/01_to_pennies_cover] Copy 'toplevel.il' to 'answers/01_to_pennies_cover/src/toplevel.il'.
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: smtbmc z3
+SBY 15:17:27 [answers/01_to_pennies_cover] base: starting process "cd answers/01_to_pennies_cover/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY 15:17:27 [answers/01_to_pennies_cover] base: finished (returncode=0)
+SBY 15:17:27 [answers/01_to_pennies_cover] smt2: starting process "cd answers/01_to_pennies_cover/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY 15:17:27 [answers/01_to_pennies_cover] smt2: finished (returncode=0)
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: starting process "cd answers/01_to_pennies_cover; yosys-smtbmc -s z3 --presat -c --noprogress -t 1  --append 0 --dump-vcd engine_0/trace%.vcd --dump-vlogtb engine_0/trace%_tb.v --dump-smtc engine_0/trace%.smtc model/design_smt2.smt2"
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Solver: z3
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Reached cover statement at answers/to_pennies.py:45 in step 0.
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace0.vcd
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace0_tb.v
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace0.smtc
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Reached cover statement at answers/to_pennies.py:53 in step 0.
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace1.vcd
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace1_tb.v
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace1.smtc
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Reached cover statement at answers/to_pennies.py:51 in step 0.
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace2.vcd
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace2_tb.v
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace2.smtc
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: ##   0:00:00  Status: passed
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: finished (returncode=0)
+SBY 15:17:27 [answers/01_to_pennies_cover] engine_0: Status returned by engine: pass
+SBY 15:17:27 [answers/01_to_pennies_cover] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 15:17:27 [answers/01_to_pennies_cover] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 15:17:27 [answers/01_to_pennies_cover] summary: engine_0 (smtbmc z3) returned pass
+SBY 15:17:27 [answers/01_to_pennies_cover] summary: trace: answers/01_to_pennies_cover/engine_0/trace0.vcd
+SBY 15:17:27 [answers/01_to_pennies_cover] summary: trace: answers/01_to_pennies_cover/engine_0/trace1.vcd
+SBY 15:17:27 [answers/01_to_pennies_cover] summary: trace: answers/01_to_pennies_cover/engine_0/trace2.vcd
+SBY 15:17:27 [answers/01_to_pennies_cover] DONE (PASS, rc=0)
 ```
 
 The cover statements aren't found in the order you put them in your code!
@@ -235,7 +235,7 @@ The cover statements aren't found in the order you put them in your code!
 Each cover statement found generates a trace where you can see the inputs and outputs, as well as some intermediate signals if they are there, using `gtkwave`:
 
 ```
-gtkwave -f answers/to_pennies_cover/engine_0/trace0.vcd
+gtkwave -f answers/01_to_pennies_cover/engine_0/trace0.vcd
 ```
 
 In this case, the first trace came from the first cover statement in the exercise. The output shows `1DD`, or 477.
@@ -245,32 +245,32 @@ In this case, the first trace came from the first cover statement in the exercis
 ## Step 7: Run the formal verification engine for bounded model checking
 
 ```
-sby -f answers/to_pennies.sby bmc
+sby -f answers/01_to_pennies.sby bmc
 ```
 
 "BMC" stands for Bounded Model Checking. More on this later exercises. If all assertions succeed, then you'll get a `DONE (PASS, rc=0)` line at the end. If not, you'll get a trace that you can look at.
 
 ```
-SBY 15:17:28 [answers/to_pennies_bmc] Removing directory 'answers/to_pennies_bmc'.
-SBY 15:17:28 [answers/to_pennies_bmc] Copy 'toplevel.il' to 'answers/to_pennies_bmc/src/toplevel.il'.
-SBY 15:17:28 [answers/to_pennies_bmc] engine_0: smtbmc z3
-SBY 15:17:28 [answers/to_pennies_bmc] base: starting process "cd answers/to_pennies_bmc/src; yosys -ql ../model/design.log ../model/design.ys"
-SBY 15:17:28 [answers/to_pennies_bmc] base: finished (returncode=0)
-SBY 15:17:28 [answers/to_pennies_bmc] smt2: starting process "cd answers/to_pennies_bmc/model; yosys -ql design_smt2.log design_smt2.ys"
-SBY 15:17:28 [answers/to_pennies_bmc] smt2: finished (returncode=0)
-SBY 15:17:28 [answers/to_pennies_bmc] engine_0: starting process "cd answers/to_pennies_bmc; yosys-smtbmc -s z3 --presat --noprogress -t 1  --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2"
-SBY 15:17:28 [answers/to_pennies_bmc] engine_0: ##   0:00:00  Solver: z3
-SBY 15:17:28 [answers/to_pennies_bmc] engine_0: ##   0:00:00  Checking assumptions in step 0..
-SBY 15:17:28 [answers/to_pennies_bmc] engine_0: ##   0:00:00  Checking assertions in step 0..
-SBY 15:17:41 [answers/to_pennies_bmc] engine_0: ##   0:00:13  Status: passed
-SBY 15:17:41 [answers/to_pennies_bmc] engine_0: finished (returncode=0)
-SBY 15:17:41 [answers/to_pennies_bmc] engine_0: Status returned by engine: pass
-SBY 15:17:41 [answers/to_pennies_bmc] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:13 (13)
-SBY 15:17:41 [answers/to_pennies_bmc] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:13 (13)
-SBY 15:17:41 [answers/to_pennies_bmc] summary: engine_0 (smtbmc z3) returned pass
-SBY 15:17:41 [answers/to_pennies_bmc] DONE (PASS, rc=0)
+SBY 15:17:28 [answers/01_to_pennies_bmc] Removing directory 'answers/01_to_pennies_bmc'.
+SBY 15:17:28 [answers/01_to_pennies_bmc] Copy 'toplevel.il' to 'answers/01_to_pennies_bmc/src/toplevel.il'.
+SBY 15:17:28 [answers/01_to_pennies_bmc] engine_0: smtbmc z3
+SBY 15:17:28 [answers/01_to_pennies_bmc] base: starting process "cd answers/01_to_pennies_bmc/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY 15:17:28 [answers/01_to_pennies_bmc] base: finished (returncode=0)
+SBY 15:17:28 [answers/01_to_pennies_bmc] smt2: starting process "cd answers/01_to_pennies_bmc/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY 15:17:28 [answers/01_to_pennies_bmc] smt2: finished (returncode=0)
+SBY 15:17:28 [answers/01_to_pennies_bmc] engine_0: starting process "cd answers/01_to_pennies_bmc; yosys-smtbmc -s z3 --presat --noprogress -t 1  --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2"
+SBY 15:17:28 [answers/01_to_pennies_bmc] engine_0: ##   0:00:00  Solver: z3
+SBY 15:17:28 [answers/01_to_pennies_bmc] engine_0: ##   0:00:00  Checking assumptions in step 0..
+SBY 15:17:28 [answers/01_to_pennies_bmc] engine_0: ##   0:00:00  Checking assertions in step 0..
+SBY 15:17:41 [answers/01_to_pennies_bmc] engine_0: ##   0:00:13  Status: passed
+SBY 15:17:41 [answers/01_to_pennies_bmc] engine_0: finished (returncode=0)
+SBY 15:17:41 [answers/01_to_pennies_bmc] engine_0: Status returned by engine: pass
+SBY 15:17:41 [answers/01_to_pennies_bmc] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:13 (13)
+SBY 15:17:41 [answers/01_to_pennies_bmc] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:13 (13)
+SBY 15:17:41 [answers/01_to_pennies_bmc] summary: engine_0 (smtbmc z3) returned pass
+SBY 15:17:41 [answers/01_to_pennies_bmc] DONE (PASS, rc=0)
 ```
 
 ## Stumped?
 
-The answer to this exercise is in `answers/to_pennies.py`.
+The answer to this exercise is in `answers/01_to_pennies.py`.

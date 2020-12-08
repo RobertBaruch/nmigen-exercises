@@ -25,7 +25,7 @@ class ToPennies(Elaboratable):
         self.pennies_out = Signal(12)
 
     def elaborate(self, _: Platform) -> Module:
-        """Implements the logic for my module."""
+        """Implements the logic for the ToPennies module."""
         m = Module()
 
         m.d.comb += self.pennies_out.eq(self.pennies +
