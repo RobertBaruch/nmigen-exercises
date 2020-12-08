@@ -114,4 +114,4 @@ If you want, you can run all formal verification modes by leaving off the mode: 
 
 ## Stumped?
 
-The answer to this exercise is in `answers/02_next_day.py`.
+The answer to this exercise is in [`answers/02_next_day.py`](answers/02_next_day.py).
