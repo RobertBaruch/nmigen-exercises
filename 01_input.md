@@ -27,7 +27,7 @@ Use formal verification to:
 
 ## Step 1: Create a module
 
-A *module* is a Python class that has inputs and outputs, and code that generates the logic for the desired functionality. Note that I didn't say code that *implements* the function. A key concept is that nMigen is a Python library for writing logic. When the module is *elaborated*, your code runs and nMigen outputs the corresponding logic.
+A nMigen *module* is a Python class that has inputs and outputs, and code that generates the logic for the desired functionality. Note that I didn't say code that *implements* the function. A key concept is that nMigen is a Python library for writing logic. When the module is *elaborated*, your code runs and nMigen outputs the corresponding logic.
 
 You can think of the logic that nMigen writes as an integrated circuit, and the code that you write as the instructions for how to create a copy of that integrated circuit.
 
@@ -35,7 +35,7 @@ Modules can use other modules (*submodules*), and you can have as many copies of
 
 ![Toolchain flow](diagrams/nmigen_blocks.png)
 
-You can use the `skeleton.py` file to start. Some key features here are:
+You can use the [`skeleton.py`](skeleton.py) file to start. Some key features here are:
 
 * Your class is derived from `Elaboratable`
 * Your public (or visible) inputs and outputs are attributes of the class.
@@ -119,7 +119,7 @@ This does the same thing.
 You can quickly check that there aren't any syntax errors by just generating the code:
 
 ```
-python3 your_class.py gen
+python3 your_file.py gen
 ```
 
 ## Step 5: Write some formal verification code
@@ -157,7 +157,7 @@ When the formal verification engine runs, it tries to falsify any of your assert
 By the way, if-statements also work for asserts:
 
 ```python
-with m.If(x == 7)
+with m.If(x == 7):
     m.d.comb += Assert(y)
 ```
 
@@ -179,7 +179,7 @@ If the engine cannot satisfy a cover, it will complain. This usually means that 
 Write the asserts and covers according to the requirements of the exercise. Compile again to make sure you haven't introduced any syntax errors.
 
 ```
-python3 your_class.py gen
+python3 your_file.py gen
 ```
 
 ## Step 6: Run the formal verification engine for covers
