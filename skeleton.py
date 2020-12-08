@@ -34,7 +34,7 @@ class MyClass(Elaboratable):
     def formal(cls) -> Tuple[Module, List[Signal]]:
         """Formal verification for my module."""
         m = Module()
-        m.submodules.my_class = my_class = MyClass()
+        m.submodules.my_class = my_class = cls()
 
         # Make sure that the output is always the same as the input
         m.d.comb += Assert(my_class.my_input == my_class.my_output)
