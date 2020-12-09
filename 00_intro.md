@@ -16,9 +16,23 @@ You will need knowledge of:
 
 ## Software prerequisites
 
-> It's unfortunate that installation of everything you need isn't a one-click process... although [FPGAWars' Apio](http://fpgawars.github.io/) goes a long way towards doing this. I just think that while yosys and nMigen are undergoing constant positive updates, Apio doesn't keep up with them. In the meantime, we just install all the tools separately.
+If you're using Windows, I hope you're using Windows Subsystem for Linux. If not, you're on your own.
 
-Also, if you're using Windows, I hope you're using Windows Subsystem for Linux. If not, you're on your own.
+### Option 1: Docker
+
+Victor Munoz has put together a [docker container](https://github.com/vmunoz82/eda_tools) that has everything you need: Python 3, nMigen, yosys, SymbiYosys, and the Z3, boolector, and yices solvers.
+
+You'll need to get [Docker Desktop](https://www.docker.com/get-started). If you're on Windows, follow the instructions for [Docker/WSL](https://docs.docker.com/docker-for-windows/wsl/) instead.
+
+Also, if you're on Windows, you will want to download and run an [X server](https://medium.com/@japheth.yates/the-complete-wsl2-gui-setup-2582828f4577) so that you can use gtkwave from the command line on WSL.
+
+Once you've done that, you can open up WSL (if you're on Windows) and then run [`eda_tools.sh`](https://raw.githubusercontent.com/vmunoz82/eda_tools/main/eda_tools.sh). This will conveniently start up the docker container with all the right options. 
+
+You may want to replace `-v $HOME:/$HOME` in `eda_tools.sh` with `-v /your/host/working/directory:/some/nice/directory/on/docker`, and then you can access your files in `/some/nice/directory/on/docker` in the docker container. For example, I do my work in WSL in `/mnt/f` so I simply use `-v /mnt/f:/mnt/f`.
+
+Remember that the docker container will not save local files (e.g. files in `/workspace`), so make sure you have your working directory mapped!
+
+### Option 2: Build it all yourself
 
 You will need:
 
