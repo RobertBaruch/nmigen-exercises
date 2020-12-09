@@ -18,7 +18,7 @@ You will need knowledge of:
 
 If you're using Windows, I hope you're using Windows Subsystem for Linux. If not, you're on your own.
 
-### Option 1: Docker
+### Option 1: Docker (recommended)
 
 Victor Munoz has put together a [docker container](https://github.com/vmunoz82/eda_tools) that has everything you need: Python 3, nMigen, yosys, SymbiYosys, and the Z3, boolector, and yices solvers.
 
