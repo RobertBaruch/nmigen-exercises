@@ -107,11 +107,11 @@ As before, you will need to:
 * Write the logic for the module in `elaborate`.
 * Write your asserts in `formal`.
 * Make sure it compiles with `python3 your_file.py gen`.
-* Run formal verification in cover mode using `sby -f answers/02_next_day.sby cover`.
-* Run formal verification in BMC mode using `sby -f answers/02_next_day.sby bmc`.
+* Run formal verification in cover mode using `sby -f answers/e02_next_day.sby cover`.
+* Run formal verification in BMC mode using `sby -f answers/e02_next_day.sby bmc`.
 
-If you want, you can run all formal verification modes by leaving off the mode: `sby -f answers/02_next_day.sby`. This actually runs all the things specified in the `[tasks]` section in the sby file.
+If you want, you can run all formal verification modes by leaving off the mode: `sby -f answers/e02_next_day.sby`. This actually runs all the things specified in the `[tasks]` section in the sby file.
 
 ## Stumped?
 
-The answer to this exercise is in [`answers/02_next_day.py`](answers/02_next_day.py).
+The answer to this exercise is in [`answers/e02_next_day.py`](answers/e02_next_day.py).
