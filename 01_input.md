@@ -1,6 +1,8 @@
 # Exercise 1: Counting coin
 
-<div style="text-align: right"> Khajiit has knowledge... if you have coin.</div>
+<p align="right">
+Khajiit has knowledge... if you have coin.
+</p>
 
 ---
 ## What you'll do:

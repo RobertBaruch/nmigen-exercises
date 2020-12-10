@@ -1,8 +1,10 @@
 # Exercise 2: The day after
 
-<div style="text-align: right">The 14th of January is World Logic Day.</div>
+<p align="right">
+The 14th of January is World Logic Day.
+</p>
 
-
+----
 ## What you'll do:
 
 Create a module that takes as inputs a date, consisting of:
