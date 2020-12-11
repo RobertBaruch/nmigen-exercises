@@ -8,3 +8,4 @@ Work in progress!
 * [03 - Life finds a way: parts of signals](03_parts.md)
 * [04 - Signs: signed signals](04_signs.md)
 * [05 - Synchronicity: synchronous signals](05_sync.md)
+* [06 - Living in the past: multi-step asserts](06_past.md)
