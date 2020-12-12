@@ -3,3 +3,4 @@ __pycache__
 *.il
 *_bmc
 *_cover
+*_prove

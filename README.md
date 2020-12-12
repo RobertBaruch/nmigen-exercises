@@ -9,3 +9,4 @@ Work in progress!
 * [04 - Signs: signed signals](04_signs.md)
 * [05 - Synchronicity: synchronous signals](05_sync.md)
 * [06 - Living in the past: multi-step asserts](06_past.md)
+* [07 - Prove it! Formal verification by induction](07_proof.md)
