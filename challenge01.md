@@ -11,9 +11,9 @@ td { border: solid thin; height: 1.4em; width: 1.4em; text-align: center; paddin
 </style>
 <table>
   <caption>The hardest Sudoku puzzle in the world</caption>
-  <colgroup><col><col><col>
-  <colgroup><col><col><col>
-  <colgroup><col><col><col>
+  <colgroup border="solid medium"><col><col><col>
+  <colgroup border="solid medium"><col><col><col>
+  <colgroup border="solid medium"><col><col><col>
   <tbody>
    <tr> <td>8 <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
    <tr> <td>  <td>  <td>3 <td>6 <td>  <td>  <td>  <td>  <td>
