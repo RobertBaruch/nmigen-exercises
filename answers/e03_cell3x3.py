@@ -20,7 +20,7 @@ class Cell3x3(Elaboratable):
         """Implements the logic for the Cell3x3 module."""
         m = Module()
 
-        neighbors = Signal(range(8))
+        neighbors = Signal(range(9))
         c = self.input
         m.d.comb += neighbors.eq(c[0] + c[1] + c[2] +
                                  c[3] + c[5] +
